@@ -13027,3 +13027,10 @@ input:focus {
 }
 
 /*# sourceMappingURL=style.css.map */
+
+@media only screen and (max-width: 3640px) and (min-width: 1200px)
+{
+  .container {
+    max-width:1600px !important; 
+  }
+}

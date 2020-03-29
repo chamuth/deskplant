@@ -8,16 +8,12 @@
                             <div class="row d-flex justify-content-between align-items-center">
                                 <div class="header-info-left d-flex">
                                     <div class="flag">
-                                        <img src="assets/img/icon/header_icon.png" alt="">
                                     </div>
                                     <div class="select-this">
                                         <form action="#">
                                             <div class="select-itms">
                                                 <select name="select" id="select1">
-                                                    <option value="">USA</option>
-                                                    <option value="">SPN</option>
-                                                    <option value="">CDA</option>
-                                                    <option value="">USD</option>
+                                                    <option value="">LK</option>
                                                 </select>
                                             </div>
                                         </form>
@@ -45,7 +41,7 @@
                             <!-- Logo -->
                             <div class="col-xl-1 col-lg-1 col-md-1 col-sm-3">
                                 <div class="logo">
-                                  <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
+                                  <a href="index.html"><img style="height:45px" src="assets/img/logo/logo.png" alt=""></a>
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-8 col-md-7 col-sm-5">
@@ -54,30 +50,8 @@
                                     <nav>                                                
                                         <ul id="navigation">                                                                                                                                     
                                             <li><a href="index.html">Home</a></li>
-                                            <li><a href="Catagori.html">Catagori</a></li>
-                                            <li class="hot"><a href="#">Latest</a>
-                                                <ul class="submenu">
-                                                    <li><a href="product_list.html"> Product list</a></li>
-                                                    <li><a href="single-product.html"> Product Details</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="blog.html">Blog</a>
-                                                <ul class="submenu">
-                                                    <li><a href="blog.html">Blog</a></li>
-                                                    <li><a href="single-blog.html">Blog Details</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="#">Pages</a>
-                                                <ul class="submenu">
-                                                    <li><a href="login.html">Login</a></li>
-                                                    <li><a href="cart.html">Card</a></li>
-                                                    <li><a href="elements.html">Element</a></li>
-                                                    <li><a href="about.html">About</a></li>
-                                                    <li><a href="confirmation.html">Confirmation</a></li>
-                                                    <li><a href="cart.html">Shopping Cart</a></li>
-                                                    <li><a href="checkout.html">Product Checkout</a></li>
-                                                </ul>
-                                            </li>
+                                            <li class="hot"><a href="#">Latest</a></li>
+                                            <li><a href="blog.html">Blog</a></li>
                                             <li><a href="contact.html">Contact</a></li>
                                         </ul>
                                     </nav>
@@ -103,7 +77,6 @@
                                             <a href="cart.html"><i class="fas fa-shopping-cart"></i></a>
                                         </div>
                                     </li>
-                                   <li class="d-none d-lg-block"> <a href="#" class="btn header-btn">Sign in</a></li>
                                 </ul>
                             </div>
                             <!-- Mobile Menu -->

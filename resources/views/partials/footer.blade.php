@@ -9,11 +9,16 @@
                  <div class="single-footer-caption mb-30">
                       <!-- logo -->
                      <div class="footer-logo">
-                         <a href="index.html"><img src="assets/img/logo/logo2_footer.png" alt=""></a>
+                         <a href="index.html"><img style="height:50px" src="assets/img/logo/logo2_footer.png" alt=""></a>
                      </div>
                      <div class="footer-tittle">
                          <div class="footer-pera">
-                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore.</p>
+                            <p>hello@deskplant.lk<br>
+                            +94 777 21 53 77<br><br>
+                            <b>Helpline:</b><br>
+
+                            Mon-Fri (9AM-6PM) <br>
+                            Sat & Sun  (9AM-3PM)</p>
                         </div>
                      </div>
                  </div>
@@ -35,12 +40,12 @@
             <div class="col-xl-3 col-lg-3 col-md-4 col-sm-7">
                 <div class="single-footer-caption mb-50">
                     <div class="footer-tittle">
-                        <h4>New Products</h4>
+                        <h4>Useful</h4>
                         <ul>
-                            <li><a href="#">Woman Cloth</a></li>
-                            <li><a href="#">Fashion Accessories</a></li>
-                            <li><a href="#"> Man Accessories</a></li>
-                            <li><a href="#"> Rubber made Toys</a></li>
+                            <li><a href="#">Bulk Price List</a></li>
+                            <li><a href="#">Care Tips</a></li>
+                            <li><a href="#">Request a Quote</a></li>
+                            <li><a href="#">Submit a Testimonial</a></li>
                         </ul>
                     </div>
                 </div>
@@ -48,13 +53,13 @@
             <div class="col-xl-3 col-lg-3 col-md-5 col-sm-7">
                 <div class="single-footer-caption mb-50">
                     <div class="footer-tittle">
-                        <h4>Support</h4>
+                        <h4>Quicklinks</h4>
                         <ul>
-                         <li><a href="#">Frequently Asked Questions</a></li>
-                         <li><a href="#">Terms & Conditions</a></li>
-                         <li><a href="#">Privacy Policy</a></li>
-                         <li><a href="#">Privacy Policy</a></li>
-                         <li><a href="#">Report a Payment Issue</a></li>
+                         <li><a href="#">Sale</a></li>
+                         <li><a href="#">Shop All</a></li>
+                         <li><a href="#">All Plants</a></li>
+                         <li><a href="#">All Pots</a></li>
+                         <li><a href="#">Accessories & Tools</a></li>
                      </ul>
                     </div>
                 </div>
@@ -64,9 +69,8 @@
         <div class="row">
          <div class="col-xl-7 col-lg-7 col-md-7">
              <div class="footer-copy-right">
-                 <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="ti-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>                   </div>
+                <p><script>document.write(new Date().getFullYear());</script> © Deskplant.lk All Rights Reserved.</p>
+            </div>
          </div>
           <div class="col-xl-5 col-lg-5 col-md-5">
              <div class="footer-copy-right f-right">

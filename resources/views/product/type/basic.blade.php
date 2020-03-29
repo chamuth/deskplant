@@ -1,3 +1,8 @@
+@extends('layouts.app')
+
+@section('content')
+
+<main>
 
 <div class="price">
     {{ session()->get('default_currency')->symbol }}{{ $product->getPrice() }}
@@ -17,3 +22,8 @@
     <input type="hidden" name="slug" value="{{ $product->slug }}" />
     <input type="hidden" name="qty" v-model="qty" />
 </form>
+
+</main>
+
+@endsection
+

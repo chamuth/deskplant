@@ -28,6 +28,8 @@ Route::post('order', 'OrderController@place')->name('order.place');
 
 Route::get('order/{order}', 'OrderController@successful')->name('order.successful');
 
+Route::get('admin/dashboard', 'OrdersDashboardController@show')->name('dashboard.show');
+
 Route::middleware('auth')
     ->name('account.')
     ->prefix('account')

@@ -26,27 +26,32 @@
         <div class="row">
           <div class="col-lg-8">
             <h3>Billing Details</h3>
-            <form class="row contact_form" action="#" method="post" novalidate="novalidate">
+            <form id="ffform" class="row contact_form" action="/order" method="post">
+            <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />  
+            <input type="hidden" name="password" value="password1234">
+            <input type="hidden" name="payment_option" value="paid"> 
+            <input type="hidden" id="shipop" name="shipping_option" value=""> 
+
               <div class="col-md-6 form-group p_star">
-                <input type="text" class="form-control" placeholder="First name" id="first" name="name" />
+                <input type="text" class="form-control" placeholder="First name" id="first" name="first_name" />
               </div>
               <div class="col-md-6 form-group p_star">
-                <input type="text" class="form-control" placeholder="Last name" id="last" name="name" />
+                <input type="text" class="form-control" placeholder="Last name" id="last" name="last_name" />
               </div>
               <div class="col-md-12 form-group">
                 <input type="text" class="form-control" id="company" name="company" placeholder="Company name" />
               </div>
               <div class="col-md-6 form-group p_star">
-                <input type="text" class="form-control" id="number" placeholder="Phone number" name="number" />
+                <input type="text" class="form-control" id="number" placeholder="Phone number" name="phone" />
               </div>
               <div class="col-md-6 form-group p_star">
-                <input type="text" class="form-control" id="email" placeholder="Email Address" name="compemailany" />
+                <input type="text" class="form-control" id="email" placeholder="Email Address" name="email" />
               </div>
               <div class="col-md-12 form-group p_star">
-                <input type="text" class="form-control" id="add1" name="add1" placeholder="Address Line 1" />
+                <input type="text" class="form-control" id="add1" name="address1" placeholder="Address Line 1" />
               </div>
               <div class="col-md-12 form-group p_star">
-                <input type="text" class="form-control" id="add2" name="add2" placeholder="Address Line 2"/>
+                <input type="text" class="form-control" id="add2" name="address2" placeholder="Address Line 2"/>
               </div>
               <div class="col-md-12 form-group p_star">
                 <input type="text" class="form-control" id="city" name="city" placeholder="City/Town" />
@@ -65,7 +70,7 @@
                 </select>
               </div>
               <div class="col-md-12 form-group">
-                <input type="text" class="form-control" id="zip" name="zip" placeholder="Postcode/ZIP" />
+                <input type="text" class="form-control" id="zip" name="postcode" placeholder="Postcode/ZIP" />
               </div>
             </form>
           </div>
@@ -145,11 +150,10 @@ $(document).ready(function() {
       if (validate())
       {
         // valid
-        e.preventDefault();
-
-        window.location = "./"
+        $('#ffform').submit();
       } else {
         // invalid
+        e.preventDefault();
       }
       
     });
@@ -170,6 +174,7 @@ function validate()
   var city = $("#city");
   var province = $("#province");
   var zip = $("#zip");
+  var shipop = $("#shipop");
 
   // validate values
   // regular, no value checks
@@ -199,6 +204,12 @@ function validate()
     valid = false;
     phone.addClass("error");
   }
+
+  
+  shipop.val(JSON.stringify({
+    add1: add1.val(), add2: add2.val(), city : city.val(), province : province.val(), zip : zip.val(),
+    phone: phone.val(), email: email.val(), first: first.val(), last: last.val()
+  }))
 
   return valid;
 }

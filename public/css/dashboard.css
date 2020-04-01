@@ -1,0 +1,156 @@
+.sidebar .sidebar-wrapper, .off-canvas-sidebar .sidebar-wrapper
+{
+    overflow-x:hidden !important;
+}
+
+.section-title
+{
+    font-weight:bold;
+    font-size:18px;
+    display:inline-block;
+    margin-bottom:25px;
+    margin-top:25px;
+}
+
+.stock-list
+{
+}
+
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+body {
+    font-family: -apple-system, ".SFNSText-Regular", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;
+}
+.toggle {
+    cursor: pointer;
+    display: inline-block;
+}
+.toggle-switch {
+    display: inline-block;
+    background: #ccc;
+    border-radius: 16px;
+    width: 58px;
+    height: 32px;
+    position: relative;
+    vertical-align: middle;
+    transition: background 0.25s;
+}
+.toggle-switch:before, .toggle-switch:after {
+    content: "";
+}
+.toggle-switch:before {
+    display: block;
+    background: linear-gradient(to bottom, #fff 0%, #eee 100%);
+    border-radius: 50%;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25);
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    transition: left 0.25s;
+}
+.toggle:hover .toggle-switch:before {
+    background: linear-gradient(to bottom, #fff 0%, #fff 100%);
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.5);
+}
+.toggle-checkbox:checked + .toggle-switch {
+    background: #56c080;
+}
+.toggle-checkbox:checked + .toggle-switch:before {
+    left: 30px;
+}
+.toggle-checkbox {
+    position: absolute;
+    visibility: hidden;
+}
+.toggle-label {
+    margin-left: 15px;
+    font-size:16px;
+    position: relative;
+    top: 2px;
+}
+
+.status-card
+{
+    background-color:#56c080;
+    padding: 15px 20px;
+    border-radius:10px;
+    color:white;
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+}
+
+.status-card a
+{
+    color:white !important;
+    font-weight:bold;
+    text-decoration:underline;
+    margin-top:5px;
+}
+.status-card.low-pad
+{
+    padding: 5px;
+}
+
+.low-pad .text
+{
+    margin-left:20px !important;
+}
+
+.status-card.bad
+{
+    background-color:#f11;
+}
+
+.overview-card
+{
+    background-color:#567bc0;
+}
+
+.status-card .text
+{
+    margin-left:30px;
+    display:flex;
+    flex-direction:column;
+}
+
+.text .title
+{
+    font-size:20px;
+}
+.text .desc
+{
+    opacity:0.75;
+    font-size:16px;   
+}
+
+.status-card .icon
+{
+    margin-left:10px;
+    font-size:30px;
+}
+
+.overview-card .text
+{
+    flex-grow:1;
+    margin-left:15px;
+    margin-right:15px;
+    text-align:center;
+}
+
+.overview-card .text:first-child
+{
+    margin-left:10px;
+}
+.overview-card .text:last-child
+{
+    margin-right:10px;
+}
+
+a
+{
+    color:#567bc0;
+}

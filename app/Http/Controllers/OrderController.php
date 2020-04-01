@@ -95,7 +95,6 @@ class OrderController extends Controller
         $this->user($request);
         $this->shippingAddress($request);
         $this->billingAddress($request);
-        $this->paymentOption();
         $this->orderStatus();
 
         $orderData = [
@@ -237,7 +236,7 @@ class OrderController extends Controller
                 'product_id' => $cartProduct->id(),
                 'order_id' => $order->id,
                 'qty' => $cartProduct->qty(),
-                'price' => $cartProduct->price(),
+                'price' => 1500,
                 'tax_amount' => $cartProduct->taxAmount(),
             ];
             $orderProductModel = $this->oderProductRepository->create($orderProductData);

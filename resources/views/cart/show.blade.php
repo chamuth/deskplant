@@ -101,7 +101,7 @@
             <br>
             <h1>No products in your cart yet</h1>
             <br><br>
-            <div class="button">Start Shopping</div>
+            <a href="/" class="button">Start Shopping</a>
         </div>
     <?php } ?>
 @endsection

@@ -30,6 +30,8 @@ Route::get('order/{order}', 'OrderController@successful')->name('order.successfu
 
 Route::get('admin/dashboard', 'OrdersDashboardController@show')->name('dashboard.show');
 
+Route::post("api/units", "OrdersDashboardController@updateUnits")->name('dashboard.api.units');
+
 Route::middleware('auth')
     ->name('account.')
     ->prefix('account')

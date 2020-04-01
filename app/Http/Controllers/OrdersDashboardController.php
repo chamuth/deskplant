@@ -65,4 +65,16 @@ class OrdersDashboardController extends Controller
         return view('dashboard.show')
                 ->with(compact('products', 'page', 'wishlists'));
     }
+
+    public function updateUnits(Request $request)
+    {
+        $units = $request->get("units");
+        $id = $request->get("proid");
+
+        // set the values
+        \DB::table("stocks")->where("id", $id)->update(['remaining' => $units]);
+
+        return redirect()
+            ->route('dashboard.show');
+    }
 }

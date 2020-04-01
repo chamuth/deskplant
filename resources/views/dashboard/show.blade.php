@@ -203,10 +203,10 @@ Coded by www.creative-tim.com
                 if ($remaining < 4)
                 {
                     ?>
-                        <div class="status-card bad low-pad">
+                        <div class="status-card bad low-pad" style="margin-bottom:10px">
                             <img src="{{ $product['main_image_url'] }}" height="100px" alt="">
                             <div class="text" style="flex-grow:1">
-                                <b>{{ $product["name"] }}</b>
+                                <b>({{ $product["slug"] }}) {{ $product["name"] }}</b>
                                 <span>Only {{$remaining}} units remaining</span>
                                 <a href="#">Contact dealer</a>
                             </div>
@@ -233,7 +233,7 @@ Coded by www.creative-tim.com
                         <th scope="col">Slug</th>
                         <th scope="col">Actions</th>
                         <th scope="col">Price</th>
-                        <th scope="col">Inventory</th>
+                        <th scope="col">Units</th>
                         <th scope="col">Orders</th>
                         </tr>
                     </thead>
@@ -251,7 +251,7 @@ Coded by www.creative-tim.com
                                         <i class="fa fa-edit"></i> Edit
                                     </a>
                                     <a data-id="{{ $product['id'] }}" data-current="{{ $remaining }}" class="add-units-button" data-toggle="modal" data-target="#addUnitsModal" href="/admin/product/{{ $product['id'] }}/edit" style="margin-left:10px">
-                                        <i class="fa fa-plus"></i> Add Units
+                                        <i class="fa fa-plus"></i> Update Units
                                     </a>
                                 </td>
                                 <td>LKR. {{ str_replace(".0000", ".", $product["price"]) }}</td>
@@ -298,16 +298,24 @@ Coded by www.creative-tim.com
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">
-                                        
-                        <label>Current of Units</label>
-                        <input type="number" class="form-control" name="units" id="newUnitsCount" value="24">
 
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
+                    <form action="/api/units" method="POST" enctype="multipart/form-data">
+                    
+                        <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />  
+
+                        <div class="modal-body">
+                            
+                            <label>Current of Units</label>
+                            <input type="number" class="form-control" name="units" id="newUnitsCount" value="24">
+                            <input type="hidden" name="proid" id="product-id" value="10">
+                            
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </form>
+
                     </div>
                 </div>
             </div>
@@ -349,6 +357,7 @@ Coded by www.creative-tim.com
         $(".add-units-button").click((e) => 
         {
             $("#newUnitsCount").val($(e.target).data('current'))
+            $("#product-id").val($(e.target).data("id"));
         })
 
     </script>

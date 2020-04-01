@@ -1,152 +1,107 @@
 @extends('layouts.app')
 
-@section('breadcrumb')
-<a-breadcrumb style="margin: 16px 0">
-    <a-breadcrumb-item>
-      <a href="{{ route('home') }}" title="home">
-        {{ __('Home') }}
-      </a>
-    </a-breadcrumb-item>
-    <a-breadcrumb-item>
-        {{ __('Cart') }}
-    </a-breadcrumb-item>
-</a-breadcrumb>
-@endsection
-
 @section('content')
-    <cart-page 
-        :items="{{ Cart::toArray() }}"
-        cart-update-url="{{ route('cart.update') }}"
-        cart-delete-url="{{ route('cart.destroy') }}" inline-template>
-        <div>
-        @php
-            $currencySymbol = session()->get('default_currency')->symbol;
-        @endphp
-            <a-row>
-                <a-col :span="2"></a-col>
-                <a-col :span="4">Image</a-col>
-                <a-col :span="4">Name</a-col>
-                <a-col :span="3">Qty</a-col>
-                <a-col :span="3">Price</a-col>
-                <a-col :span="4">Tax</a-col>
-                <a-col :span="4">Line Total</a-col>
-            </a-row>
-            <a-row class="mt-1" :key="item.slug" v-for="item in items">
-                <a-col :span="2">
-                    <a-checkbox @change="clickOnCheckBox($event, item)"></a-checkbox>
-                </a-col>
-                <a-col :span="4">
-                    <a-avatar :style="{width:'75px', height: '75px'}" :src="item.image"></a-avatar>
-                </a-col>
-                <a-col :span="4">
-                    <a :href="'/product/' + item.slug">
-                        @{{item.name}}
-                    </a>
-                    <p v-for="attributeInfo in item.attributes">
-                        @{{ attributeInfo['attribute_name'] }}: @{{ attributeInfo['attribute_dropdown_text'] }}
-                    </p>
-                </a-col>
-                <a-col :span="3">@{{ parseFloat(item.qty).toFixed(2) }}</a-col>
-                <a-col :span="3">{{ $currencySymbol }}@{{ parseFloat(item.price).toFixed(2) }}</a-col>
-                <a-col :span="4">{{ $currencySymbol }}@{{ parseFloat(item.tax).toFixed(2) }}</a-col>
-                <a-col :span="4">{{ $currencySymbol }}@{{ parseFloat((item.qty * item.price) + item.tax).toFixed(2) }}</a-col>
-                
-            </a-row>
-            <a-row class="mt-1">
-                <a-col :span="2"></a-col>
-                <a-col :span="4"></a-col>
-                <a-col :span="4"></a-col>
-                <a-col :span="3"></a-col>
-                <a-col :span="3"></a-col>
-                <a-col :span="4">{{ __('Discount:') }}</a-col>
-                <a-col :span="4">
-                    {{ $currencySymbol }}{{ Cart::discount() }}
-                </a-col>
-            </a-row>
-            <a-row class="mt-1">
-                <a-col :span="2"></a-col>
-                <a-col :span="4"></a-col>
-                <a-col :span="4"></a-col>
-                <a-col :span="3"></a-col>
-                <a-col :span="3"></a-col>
-                <a-col :span="4">{{ __('Grand Total:') }}</a-col>
-                <a-col :span="4">
-                    {{ $currencySymbol }}{{ Cart::total() }}
-                </a-col>
-            </a-row>
-            <a-row class="mt-1">
-                <a-col v-if="showCartActionBtn" :span="24">
-                    <a-button v-on:click="updateCartProductClick" type="primary">Update</a-button>
-                    <a-button v-on:click="delteCartProductClick" type="dashed">Delete</a-button>
-                </a-col>
-            </a-row>
-            <a-divider></a-divider>
-            <a-row :gutter="20" class="mt-1">
-                <a-col :span="12" :push="4">
-                    <a-card title="Apply Promotion Code">
-                        @if (Cart::discount(false) <= 0)
-                        <div>
-                            <form method="get" :form="form" @submit="handleCouponSubmit" action="">
-                                <a-form-item label="{{ __('Enter your promotion code:') }}">
-                                    <a-input :auto-focus="true" name="promotion_code"></a-input>
-                                </a-form-item>
-                                <a-form-item>
-                                    <a-button html-type="submit" type="primary">{{ __('Apply') }}</a-button>
-                                </a-form-item>
-                            </form>
-                        </div>
-                        @else
-                            {{ __('You have used one coupon already')  }}
-                        @endif
-                    </a-card>
-                </a-col>
-                <a-col :span="8" :push="4">
-                    <a class="btn-checkout" href="{{ route('checkout.show') }}">
-                        <a-button type="primary">{{ __('Checkout') }}</a-button>
-                    </a>
-                </a-col>
-            </a-row>
-            <a-modal
-                title="Cart Update"
-                :visible="cartUpdateModalVisibility"
-                @ok="clickOnCartUpdateOk"
-                ok-text="Update"
-                @cancel="clickOnCartUpdateCancel">
-                <p v-if="cartActionProducts.length">
-                    <a-row :gutter="5">
-                        <a-col :span="4">Image</a-col>
-                        <a-col :span="6">Name</a-col>
-                        <a-col :span="5">Qty</a-col>
-                        <a-col :span="3">Price</a-col>
-                        <a-col :span="3">Tax</a-col>
-                        <a-col :span="3">Total</a-col>
-                    </a-row>
-                    <a-row :gutter="5" class="mt-1" key="index" v-for="(cartProduct, index) in cartActionProducts">
-                        <a-col :span="4">
-                            <a-avatar :style="{width:'50px', height: '50px'}" :src="cartProduct.image">
-                            </a-avatar>
-                        </a-col>
-                        <a-col :span="6">
-                            <a :href="'/product/' + cartProduct.slug">
-                                @{{cartProduct.name}}
-                            </a>
-                        </a-col>
-                        <a-col :span="5">
-                            <a-input-number :style="'width:50px;'" :min="1" v-model="cartProduct.qty">
-                            </a-input-number>
-                        </a-col>
-                        <a-col :span="3">
-                            @{{ parseFloat(cartProduct.price).toFixed(2) }}
-                        </a-col>
-                        <a-col :span="3">
-                            @{{ parseFloat(cartProduct.tax).toFixed(2) }}
-                        </a-col>
-                        <a-col :span="3">
-                            @{{ parseFloat((cartProduct.qty * cartProduct.price) + cartProduct.tax).toFixed(2) }}
-                        </a-col>      
-                    </a-row>
-                </p>
-            </a-modal>
+    <?php if (sizeof($cartProducts) != 0) {?>
+        <?php $products = (Cart::toArray()) ?>
+    <section class="cart_area section_padding">
+    <div class="container">
+      <div class="cart_inner">
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Product</th>
+                <th scope="col">Price (LKR)</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Total (LKR)</th>
+              </tr>
+            </thead>
+            <tbody>
+                <?php
+                  $total = 0;
+                foreach ($products as $product) {
+                      $total += intval(str_replace(",", "", $product["price"]));
+                    ?>
+
+                            <tr>
+                            <td>
+                            <div class="media">
+                                <div class="d-flex">
+                                <img src="{{ $product['image'] }}" alt="" />
+                                </div>
+                                <div class="media-body">
+                                <p>{{$product["name"]}}</p>
+                                </div>
+                            </div>
+                            </td>
+                            <td>
+
+                            <h5>{{ $product["price"]}}</h5>
+                            </td>
+                            <td>
+                            <div class="product_count">
+                                <!-- <input type="text" value="1" min="0" max="10" title="Quantity:"
+                                class="input-text qty input-number" />
+                                <button
+                                class="increase input-number-increment items-count" type="button">
+                                <i class="ti-angle-up"></i>
+                                </button>
+                                <button
+                                class="reduced input-number-decrement items-count" type="button">
+                                <i class="ti-angle-down"></i>
+                                </button> -->
+                                <span class="input-number-decrement"> <i class="ti-minus"></i></span>
+                                <input class="input-number" type="text" value="{{ $product['qty'] }}" min="0" max="10">
+                                <span class="input-number-increment"> <i class="ti-plus"></i></span>
+                            </div>
+                            </td>
+                            <td>
+                            <h5>{{ strval(intval($product["qty"]) * intval(str_replace(",", "", $product["price"]))) . ".00" }}</h5>
+                            </td>
+                        </tr>
+                    <?php
+                } ?>
+              
+
+
+              <tr class="bottom_button">
+                <td>
+                  <a class="btn_1" href="#">Update Cart</a>
+                </td>
+                <td></td>
+                <td></td>
+                <td>
+                  <div class="cupon_text float-right">
+                    <a class="btn_1" href="#">Close Coupon</a>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td>
+                  <h5>Subtotal</h5>
+                </td>
+                <td>
+                  <h5>{{$total}}.00</h5>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="checkout_btn_inner float-right">
+            <a class="btn_1" href="/">Continue Shopping</a>
+            <a class="btn_1 checkout_btn_1" href="/checkout">Proceed to checkout</a>
+          </div>
         </div>
-    </cart-page>
+      </div>
+  </section>
+    <?php } else { ?>
+        <div class="container text-center" style="margin-top:250px; margin-bottom:250px">
+            <i style="font-size:50px;margin-bottom:10px;" class="fa fa-frown"></i>
+            <br>
+            <h1>No products in your cart yet</h1>
+            <br><br>
+            <div class="button">Start Shopping</div>
+        </div>
+    <?php } ?>
 @endsection

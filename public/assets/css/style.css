@@ -2440,8 +2440,8 @@ input:focus::-moz-placeholder {
 
 /* line 601, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_common.scss */
 .preloader .preloader-circle {
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   position: relative;
   border-style: solid;
   border-width: 3px;
@@ -2487,7 +2487,7 @@ input:focus::-moz-placeholder {
 
 /* line 643, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_common.scss */
 .preloader .preloader-img img {
-  max-width: 55px;
+  max-width: 100px;
 }
 
 /* line 646, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_common.scss */
@@ -3709,7 +3709,6 @@ input:focus {
 /* line 224, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_headerMenu.scss */
 .header-bottom .header-right .shopping-card::before {
   position: absolute;
-  content: "02";
   width: 25px;
   height: 25px;
   background: #00b1ff;
@@ -13033,4 +13032,43 @@ input:focus {
   .container {
     max-width:1600px !important; 
   }
+}
+
+.delivery-options
+{
+}
+.delivery-option-panel
+{
+  cursor:pointer;
+  border: 1px solid #2577fd;
+  background-color:#2577fd;
+  color:white;
+  padding: 20px 25px;
+  border-radius:10px;
+  display:flex;
+  flex-direction:row;
+}
+
+.delivery-option-panel .fa
+{
+  font-size:25px;
+  margin-right:25px;
+  color:white;
+}
+
+.delivery-option-panel .des
+{
+  display:flex;
+  flex-direction:column;
+  color:white;
+}
+
+.delivery-option-panel .delivery-date
+{
+  font-size:18px;
+}
+
+input.error
+{
+  border:1px solid red !important;
 }

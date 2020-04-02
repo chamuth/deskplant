@@ -107,6 +107,8 @@
 
             ?>
 
+            <div class="dashboard-section-title">DELIVERY METHOD</div>
+
             <div class="facet-container">
               <div class="left">
                 <label class="mode-title">Manual Delivery</label>
@@ -158,6 +160,11 @@
                       $shipping_info = json_decode($order->shipping_option);
                     ?>
                     <span>{{ $shipping_info->first . " " . $shipping_info->last }}, {{ $shipping_info->add1 }}, {{ $shipping_info->add2 }}, {{ $shipping_info->city }}</span>
+
+                    <div class="actions">
+                      <button class="btn btn-danger set-to-delivered-button" data-order-id="{{ $order->id }}"><i class="fa fa-check"></i> SET TO DELIVERED</button>
+                      <button class="btn btn-primary contact-customer-button" data-email="{{ $shipping_info->email }}"><i class="fa fa-envelope"></i> CONTACT CUSTOMER</button>
+                    </div>
 
                   </li>
                 <?php 
@@ -215,6 +222,11 @@
                       $shipping_info = json_decode($order->shipping_option);
                     ?>
                     <span>{{ $shipping_info->first . " " . $shipping_info->last }}, {{ $shipping_info->add1 }}, {{ $shipping_info->add2 }}, {{ $shipping_info->city }}</span>
+
+                    <div class="actions">
+                      <button class="btn btn-danger set-to-delivered-button" data-order-id="{{ $order->id }}"><i class="fa fa-check"></i> SET TO DELIVERED</button>
+                      <button class="btn btn-primary contact-customer-button" data-email="{{ $shipping_info->email }}"><i class="fa fa-envelope"></i> CONTACT CUSTOMER</button>
+                    </div>
 
                   </li>
                 <?php 

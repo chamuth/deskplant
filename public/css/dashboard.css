@@ -259,3 +259,32 @@ p {
     background-color:#ccc;
     margin-bottom:10px;
 }
+
+.dashboard-section-title
+{
+    font-size:25px;
+    padding-bottom:5px;
+    border-bottom:2px solid #ddd;
+}
+
+.facet .actions
+{
+    display:flex;
+    flex-direction:row;
+    margin-top:5px;
+}
+
+.facet .actions>*
+{
+    flex:1 1;
+}
+
+.facet .actions>*:first-child
+{
+    margin-right:5px;
+}
+
+.btn .fa
+{
+    margin-right:10px;
+}

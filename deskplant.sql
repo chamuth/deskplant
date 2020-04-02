@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 30, 2020 at 07:57 AM
+-- Generation Time: Apr 02, 2020 at 03:25 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.2
 
@@ -45,6 +45,21 @@ CREATE TABLE `addresses` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `addresses`
+--
+
+INSERT INTO `addresses` (`id`, `user_id`, `type`, `first_name`, `last_name`, `company_name`, `address1`, `address2`, `postcode`, `city`, `state`, `country_id`, `phone`, `created_at`, `updated_at`) VALUES
+(1, 1, 'SHIPPING', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-04-01 05:58:33', '2020-04-01 05:58:33'),
+(2, 1, 'SHIPPING', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-04-01 05:59:02', '2020-04-01 05:59:02'),
+(3, 1, 'SHIPPING', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-04-01 05:59:27', '2020-04-01 05:59:27'),
+(4, 1, 'SHIPPING', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-04-01 05:59:28', '2020-04-01 05:59:28'),
+(5, 1, 'SHIPPING', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-04-01 06:06:08', '2020-04-01 06:06:08'),
+(6, 1, 'SHIPPING', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-04-01 06:07:01', '2020-04-01 06:07:01'),
+(7, 1, 'SHIPPING', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-04-01 06:08:56', '2020-04-01 06:08:56'),
+(8, 1, 'SHIPPING', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-04-01 06:10:08', '2020-04-01 06:10:08'),
+(9, 1, 'SHIPPING', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-04-01 06:13:17', '2020-04-01 06:13:17');
 
 -- --------------------------------------------------------
 
@@ -603,6 +618,25 @@ INSERT INTO `currencies` (`id`, `name`, `code`, `symbol`, `conversation_rate`, `
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `delivery_method`
+--
+
+CREATE TABLE `delivery_method` (
+  `orderid` bigint(20) NOT NULL,
+  `method` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `delivery_method`
+--
+
+INSERT INTO `delivery_method` (`orderid`, `method`) VALUES
+(3, 0),
+(4, 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `languages`
 --
 
@@ -811,6 +845,14 @@ CREATE TABLE `orders` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `shipping_option`, `payment_option`, `order_status_id`, `currency_id`, `user_id`, `shipping_address_id`, `billing_address_id`, `track_code`, `created_at`, `updated_at`) VALUES
+(3, '{\"add1\":\"Ratakoopiwatta\",\"add2\":\"Hiriwadunna\",\"city\":\"Kegalle\",\"zip\":\"71000\",\"phone\":\"0756281355\",\"email\":\"c.chamandana@gmail.com\",\"first\":\"Chamuth\",\"last\":\"Chamandana\"}', 'paid', 1, 1, 1, 8, 8, NULL, '2020-04-01 06:10:08', '2020-04-01 06:10:08'),
+(4, '{\"add1\":\"Ratakoopiwatta\",\"add2\":\"Hiriwadunna\",\"city\":\"Kegalle\",\"zip\":\"71000\",\"phone\":\"0756281355\",\"email\":\"c.chamandana@gmail.com\",\"first\":\"Chamuth\",\"last\":\"Chamandana\"}', 'paid', 1, 1, 1, 9, 9, NULL, '2020-04-01 06:13:17', '2020-04-01 06:13:17');
+
 -- --------------------------------------------------------
 
 --
@@ -827,6 +869,15 @@ CREATE TABLE `order_products` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `order_products`
+--
+
+INSERT INTO `order_products` (`id`, `product_id`, `order_id`, `qty`, `price`, `tax_amount`, `created_at`, `updated_at`) VALUES
+(1, 10, 3, '1.000000', '1500.000000', '0.000000', '2020-04-01 06:10:08', '2020-04-01 06:10:08'),
+(2, 11, 3, '1.000000', '1500.000000', '0.000000', '2020-04-01 06:10:08', '2020-04-01 06:10:08'),
+(3, 11, 4, '1.000000', '1500.000000', '0.000000', '2020-04-01 06:13:18', '2020-04-01 06:13:18');
 
 -- --------------------------------------------------------
 
@@ -984,11 +1035,11 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `type`, `name`, `slug`, `sku`, `barcode`, `description`, `status`, `in_stock`, `track_stock`, `qty`, `is_taxable`, `price`, `cost_price`, `weight`, `width`, `height`, `length`, `meta_title`, `meta_description`, `created_at`, `updated_at`) VALUES
-(10, 'BASIC', 'Geometric oak pot with Opuntia monacantha cactus plant', 'geo-oak-0032', NULL, NULL, NULL, 0, NULL, 1, '12.000000', 0, '1500.000000', '1800.000000', NULL, NULL, NULL, NULL, NULL, NULL, '2020-03-29 00:41:59', '2020-03-29 01:42:38'),
-(11, 'BASIC', 'Geometric oak pot with albo peperomia plant', 'geo-oak–0031', NULL, NULL, NULL, 0, NULL, 1, '11.000000', 0, '1500.000000', '1800.000000', NULL, NULL, NULL, NULL, NULL, NULL, '2020-03-29 00:44:20', '2020-03-29 01:42:50'),
-(12, 'BASIC', 'Notocactus rutilans cactus with geometric oak pot – 0030', 'noto-0030', NULL, NULL, NULL, 1, NULL, 1, '11.000000', 0, '1500.000000', '1800.000000', NULL, NULL, NULL, NULL, NULL, NULL, '2020-03-29 01:54:13', '2020-03-29 01:55:21'),
-(13, 'BASIC', 'Deskplant LK Podda with aloe juvenna plant – 0029', 'podda-0029', NULL, NULL, NULL, 1, NULL, 1, '7.000000', 0, '1500.000000', '1800.000000', NULL, NULL, NULL, NULL, NULL, NULL, '2020-03-29 01:56:28', '2020-03-29 01:57:04'),
-(14, 'BASIC', 'Geometric oak pot with mini pine tree- 0028', 'geo-oak-28', NULL, NULL, NULL, 0, NULL, 1, '4.000000', 0, '1500.000000', '1800.000000', NULL, NULL, NULL, NULL, NULL, NULL, '2020-03-29 01:57:58', '2020-03-29 01:58:24');
+(10, 'BASIC', 'Geometric oak pot with Opuntia monacantha cactus plant', 'geo-oak-0032', NULL, NULL, NULL, 0, NULL, 0, '12.000000', 0, '1500.000000', '1800.000000', NULL, NULL, NULL, NULL, NULL, NULL, '2020-03-29 00:41:59', '2020-04-02 07:20:21'),
+(11, 'BASIC', 'Geometric oak pot with albo peperomia plant', 'geo-oak–0031', NULL, NULL, NULL, 0, NULL, 0, '11.000000', 0, '1500.000000', '1800.000000', NULL, NULL, NULL, NULL, NULL, NULL, '2020-03-29 00:44:20', '2020-04-02 07:24:30'),
+(12, 'BASIC', 'Notocactus rutilans cactus with geometric oak pot – 0030', 'noto-0030', NULL, NULL, NULL, 0, NULL, 0, '11.000000', 0, '1500.000000', '1800.000000', NULL, NULL, NULL, NULL, NULL, NULL, '2020-03-29 01:54:13', '2020-04-02 07:24:42'),
+(13, 'BASIC', 'Deskplant LK Podda with aloe juvenna plant – 0029', 'podda-0029', NULL, NULL, NULL, 0, NULL, 0, '7.000000', 0, '1500.000000', '1800.000000', NULL, NULL, NULL, NULL, NULL, NULL, '2020-03-29 01:56:28', '2020-04-02 07:24:53'),
+(14, 'BASIC', 'Geometric oak pot with mini pine tree- 0028', 'geo-oak-28', NULL, NULL, NULL, 0, NULL, 0, '4.000000', 0, '1500.000000', '1800.000000', NULL, NULL, NULL, NULL, NULL, NULL, '2020-03-29 01:57:58', '2020-04-02 07:25:03');
 
 -- --------------------------------------------------------
 
@@ -1005,17 +1056,6 @@ CREATE TABLE `product_images` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `product_images`
---
-
-INSERT INTO `product_images` (`id`, `product_id`, `path`, `alt_text`, `is_main_image`, `created_at`, `updated_at`) VALUES
-(10, 10, 'uploads/catalog/10/HCqiemvNmuiyfHxFpaDXGyqzjAl8fAtN6smoPiEC.jpeg', '', 1, '2020-03-29 00:42:30', '2020-03-29 00:50:24'),
-(11, 11, 'uploads/catalog/11/DmIrrXmTB5O4UColWiWAKzB0pm4eVgCSiKTRZChO.jpeg', '', 1, '2020-03-29 00:44:45', '2020-03-29 00:50:50'),
-(12, 12, 'uploads/catalog/12/11ByGeB4HvFc2MlCp979PGT1TOtwUqWsEIydyPPL.jpeg', '', 1, '2020-03-29 01:55:05', '2020-03-29 01:55:21'),
-(14, 13, 'uploads/catalog/13/uYKvhmwuKja71kJMc5b9YFUppfZ1ocxlNsV5Oprl.jpeg', '', 1, '2020-03-29 01:57:00', '2020-03-29 01:57:04'),
-(15, 14, 'uploads/catalog/14/TGU5lZRp15DlDTf349BJdLkksjd30XjKMLNDG8G2.jpeg', '', 1, '2020-03-29 01:58:19', '2020-03-29 01:58:24');
 
 -- --------------------------------------------------------
 
@@ -1270,6 +1310,28 @@ CREATE TABLE `states` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `stocks`
+--
+
+CREATE TABLE `stocks` (
+  `id` bigint(20) NOT NULL,
+  `remaining` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `stocks`
+--
+
+INSERT INTO `stocks` (`id`, `remaining`) VALUES
+(10, 22),
+(11, 12),
+(12, 22),
+(13, 7),
+(14, 34);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tax_groups`
 --
 
@@ -1317,6 +1379,13 @@ CREATE TABLE `users` (
   `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `user_group_id` bigint(20) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `image`, `user_group_id`) VALUES
+(1, 'Chamandana', 'c.chamandana@gmail.com', NULL, 'password1234', NULL, '2020-04-01 05:58:32', '2020-04-01 05:58:32', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -1463,6 +1532,12 @@ ALTER TABLE `countries`
 --
 ALTER TABLE `currencies`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `delivery_method`
+--
+ALTER TABLE `delivery_method`
+  ADD PRIMARY KEY (`orderid`);
 
 --
 -- Indexes for table `languages`
@@ -1701,6 +1776,12 @@ ALTER TABLE `states`
   ADD KEY `states_country_id_foreign` (`country_id`);
 
 --
+-- Indexes for table `stocks`
+--
+ALTER TABLE `stocks`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `tax_groups`
 --
 ALTER TABLE `tax_groups`
@@ -1740,7 +1821,7 @@ ALTER TABLE `wishlists`
 -- AUTO_INCREMENT for table `addresses`
 --
 ALTER TABLE `addresses`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `admin_users`
@@ -1860,13 +1941,13 @@ ALTER TABLE `oauth_personal_access_clients`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `order_products`
 --
 ALTER TABLE `order_products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `order_product_attributes`
@@ -1914,7 +1995,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `product_images`
 --
 ALTER TABLE `product_images`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `product_property`
@@ -2010,7 +2091,7 @@ ALTER TABLE `tax_rates`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `user_groups`

@@ -1,17 +1,3 @@
-<!--
-=========================================================
-* Paper Dashboard 2 - v2.0.1
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/paper-dashboard-2
-* Copyright 2020 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
--->
 <!doctype html>
 <html lang="en">
 
@@ -49,15 +35,15 @@ Coded by www.creative-tim.com
       <div class="sidebar-wrapper">
         <ul class="nav">
           <li class="active ">
-            <a href="javascript:;">
+            <a href="/admin/dashboard">
               <i class="nc-icon nc-box"></i>
-              <p>INVENTORY</p>
+              <span>INVENTORY</span>
             </a>
           </li>
           <li>
-            <a href="javascript:;">
+            <a href="/admin/dashboard/orders">
               <i class="nc-icon nc-delivery-fast"></i>
-              <p>ORDERS</p>
+              <span>ORDERS</span>
             </a>
           </li>
         </ul>

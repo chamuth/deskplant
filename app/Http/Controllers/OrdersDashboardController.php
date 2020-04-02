@@ -66,6 +66,11 @@ class OrdersDashboardController extends Controller
                 ->with(compact('products', 'page', 'wishlists'));
     }
 
+    public function showOrders()
+    {
+        return view("dashboard.showorders");
+    }
+
     public function updateUnits(Request $request)
     {
         $units = $request->get("units");
@@ -76,5 +81,25 @@ class OrdersDashboardController extends Controller
 
         return redirect()
             ->route('dashboard.show');
+    }
+
+    public function updateDeliveryMethods(Request $request)
+    {
+        $data = $request->get("data");
+
+        foreach($data as $order)
+        {
+            if (\DB::table("delivery_method")->where("orderid", $order["id"])->exists())
+            {
+                \DB::table("delivery_method")->where("orderid", $order["id"])->update(['method' => $order["method"]]);
+            } else {
+                \DB::table("delivery_method")->insert([
+                    ['orderid' => $order["id"], "method" => $order["method"]]
+                ]);
+            }
+            
+        }
+
+        return \Response::json($data);
     }
 }

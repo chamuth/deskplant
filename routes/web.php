@@ -29,8 +29,10 @@ Route::post('order', 'OrderController@place')->name('order.place');
 Route::get('order/{order}', 'OrderController@successful')->name('order.successful');
 
 Route::get('admin/dashboard', 'OrdersDashboardController@show')->name('dashboard.show');
+Route::get('admin/dashboard/orders', 'OrdersDashboardController@showOrders')->name('dashboard.showorders');
 
 Route::post("api/units", "OrdersDashboardController@updateUnits")->name('dashboard.api.units');
+Route::post("api/delivery_method", "OrdersDashboardController@updateDeliveryMethods")->name('dashboard.api.deliverymethod');
 
 Route::middleware('auth')
     ->name('account.')

@@ -3,7 +3,6 @@
 /vendor
 /modules/avored/stripe
 /modules/avored/pos
-.env
 .phpunit.result.cache
 Homestead.json
 Homestead.yaml

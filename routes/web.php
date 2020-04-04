@@ -37,7 +37,10 @@ Route::middleware(['admin.auth:admin', 'permission'])
 
     Route::post("api/units", "OrdersDashboardController@updateUnits")->name('dashboard.api.units');
     Route::post("api/delivery_method", "OrdersDashboardController@updateDeliveryMethods")->name('dashboard.api.deliverymethod');
+
+    Route::get("/dashboard", "DashboardController@show")->name("dashboard.main.show");
 });
+
 
 Route::middleware('auth')
     ->name('account.')

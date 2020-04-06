@@ -29,10 +29,8 @@
                     <div class="footer-tittle">
                         <h4>Quick Links</h4>
                         <ul>
-                            <li><a href="#">About</a></li>
-                            <li><a href="#"> Offers & Discounts</a></li>
-                            <li><a href="#"> Get Coupon</a></li>
-                            <li><a href="#">  Contact Us</a></li>
+                            <li><a href="/contact">About</a></li>
+                            <li><a href="/">  Contact Us</a></li>
                         </ul>
                     </div>
                 </div>
@@ -42,10 +40,10 @@
                     <div class="footer-tittle">
                         <h4>Useful</h4>
                         <ul>
-                            <li><a href="#">Bulk Price List</a></li>
-                            <li><a href="#">Care Tips</a></li>
-                            <li><a href="#">Request a Quote</a></li>
-                            <li><a href="#">Submit a Testimonial</a></li>
+                            <li><a href="https://www.deskplant.lk/wp-content/uploads/2019/02/Bulk-price-list.pdf">Bulk Price List</a></li>
+                            <li><a href="https://www.deskplant.lk/wp-content/uploads/2019/02/deskplantlk-careing-tips.pdf">Care Tips</a></li>
+                            <li><a href="#" data-toggle="modal" data-target="#requestQuoteModal">Request a Quote</a></li>
+                            <li><a href="#" data-toggle="modal" data-target="#submitTestimonialModal">Submit a Testimonial</a></li>
                         </ul>
                     </div>
                 </div>
@@ -55,11 +53,11 @@
                     <div class="footer-tittle">
                         <h4>Quicklinks</h4>
                         <ul>
-                         <li><a href="#">Sale</a></li>
-                         <li><a href="#">Shop All</a></li>
-                         <li><a href="#">All Plants</a></li>
-                         <li><a href="#">All Pots</a></li>
-                         <li><a href="#">Accessories & Tools</a></li>
+                         <li><a href="/">Sale</a></li>
+                         <li><a href="/">Shop All</a></li>
+                         <li><a href="/">All Plants</a></li>
+                         <li><a href="/">All Pots</a></li>
+                         <li><a href="/">Accessories & Tools</a></li>
                      </ul>
                     </div>
                 </div>
@@ -89,3 +87,80 @@
 <!-- Footer End-->
 
 </footer>
+
+
+<div class="modal fade" id="requestQuoteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Request Quote</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="/request_quote" method="POST" enctype="multipart/form-data">
+
+        <div class="modal-body">
+            <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />  
+
+            <label>Your Name</label>
+            <input type="text" name="name" class="form-control" placeholder="ex: John Doe" value="">
+
+            <label class="top-padded">Your Company</label>
+            <input type="text" name="company" class="form-control" placeholder="ex: ABCD Corporation" value="">
+
+            <label class="top-padded">Email Address</label>
+            <input type="text" name="email" class="form-control" placeholder="ex: example@mail.com" value="">
+
+            <label class="top-padded">Describe your requirements: </label>
+            <textarea class="form-control" name="description" height="200px"></textarea>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Request</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="submitTestimonialModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Submit Testimonial</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="/submit_testimonial" method="POST" enctype="multipart/form-data">
+        <div class="modal-body">
+            <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />  
+            
+            <label>Your Name</label>
+            <input type="text" class="form-control" name="name" placeholder="ex: John Doe">
+
+            <label>Email Address</label>
+            <input type="email" class="form-control" name="email" placeholder="ex: example@mail.com">
+
+            <label class="top-padded">Company Name</label>
+            <input type="text" class="form-control" name="company" placeholder="ex: ACME Company">
+
+            <label class="top-padded">Your Job / Position</label>
+            <input type="text" class="form-control" name="position" placeholder="ex: Chief Executive Officer">
+
+            <label class="top-padded">Your Testimonial</label>
+            <textarea type="text" class="form-control" name="testimonial"></textarea>
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

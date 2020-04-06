@@ -83,6 +83,7 @@
   </div>
   <!-- Shop Method End-->
   <!-- Latest Products Start -->
+  <a id="latest"></a>
   <section class="latest-product-area padding-bottom" style="margin-top:100px">
       <div class="container" >
           <div class="row product-btn d-flex justify-content-end align-items-end">
@@ -226,7 +227,7 @@
                       <div class="latest-subscribe">
                           <form action="#">
                               <input type="email" placeholder="Your email here">
-                              <button>Shop Now</button>
+                              <button>Subscribe</button>
                           </form>
                       </div>
                   </div>

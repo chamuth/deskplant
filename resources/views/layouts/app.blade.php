@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Laravel') }} | Indoor Potted Plants Delivery in Sri Lanka</title>
     <link rel="shortcut icon" href="/favicon.png">
     <!-- Scripts -->
     

@@ -32,8 +32,8 @@ Route::post('order', 'OrderController@place')->name('order.place');
 Route::get('order/{order}', 'OrderController@successful')->name('order.successful');
 
 Route::post("request_quote", "RequestQuoteController@submit")->name("quote.request");
-
 Route::post("submit_testimonial", "SubmitTestimonialController@submit")->name("testimonial.submit");
+Route::post("subscribe", "NewsletterSubscriptionController@subscribe")->name("newsletter.subscribe");
 
 Route::middleware(['admin.auth:admin', 'permission'])
 ->group(function()

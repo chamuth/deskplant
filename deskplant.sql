@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 02, 2020 at 03:25 PM
+-- Generation Time: Apr 06, 2020 at 11:25 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.2
 
@@ -59,7 +59,8 @@ INSERT INTO `addresses` (`id`, `user_id`, `type`, `first_name`, `last_name`, `co
 (6, 1, 'SHIPPING', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-04-01 06:07:01', '2020-04-01 06:07:01'),
 (7, 1, 'SHIPPING', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-04-01 06:08:56', '2020-04-01 06:08:56'),
 (8, 1, 'SHIPPING', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-04-01 06:10:08', '2020-04-01 06:10:08'),
-(9, 1, 'SHIPPING', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-04-01 06:13:17', '2020-04-01 06:13:17');
+(9, 1, 'SHIPPING', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-04-01 06:13:17', '2020-04-01 06:13:17'),
+(10, 1, 'SHIPPING', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-04-04 01:45:45', '2020-04-04 01:45:45');
 
 -- --------------------------------------------------------
 
@@ -72,6 +73,13 @@ CREATE TABLE `admin_password_resets` (
   `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `admin_password_resets`
+--
+
+INSERT INTO `admin_password_resets` (`email`, `token`, `created_at`) VALUES
+('c.chamandana@gmail.com', '$2y$10$sK2SZqNMykY3waqE5Fk1GOXCYIIDn3BjTFjeRn6xJ5fx8Iku8eXCm', '2020-04-03 14:37:15');
 
 -- --------------------------------------------------------
 
@@ -632,7 +640,8 @@ CREATE TABLE `delivery_method` (
 
 INSERT INTO `delivery_method` (`orderid`, `method`) VALUES
 (3, 0),
-(4, 1);
+(4, 1),
+(5, 1);
 
 -- --------------------------------------------------------
 
@@ -851,7 +860,8 @@ CREATE TABLE `orders` (
 
 INSERT INTO `orders` (`id`, `shipping_option`, `payment_option`, `order_status_id`, `currency_id`, `user_id`, `shipping_address_id`, `billing_address_id`, `track_code`, `created_at`, `updated_at`) VALUES
 (3, '{\"add1\":\"Ratakoopiwatta\",\"add2\":\"Hiriwadunna\",\"city\":\"Kegalle\",\"zip\":\"71000\",\"phone\":\"0756281355\",\"email\":\"c.chamandana@gmail.com\",\"first\":\"Chamuth\",\"last\":\"Chamandana\"}', 'paid', 1, 1, 1, 8, 8, NULL, '2020-04-01 06:10:08', '2020-04-01 06:10:08'),
-(4, '{\"add1\":\"Ratakoopiwatta\",\"add2\":\"Hiriwadunna\",\"city\":\"Kegalle\",\"zip\":\"71000\",\"phone\":\"0756281355\",\"email\":\"c.chamandana@gmail.com\",\"first\":\"Chamuth\",\"last\":\"Chamandana\"}', 'paid', 1, 1, 1, 9, 9, NULL, '2020-04-01 06:13:17', '2020-04-01 06:13:17');
+(4, '{\"add1\":\"Ratakoopiwatta\",\"add2\":\"Hiriwadunna\",\"city\":\"Kegalle\",\"zip\":\"71000\",\"phone\":\"0756281355\",\"email\":\"c.chamandana@gmail.com\",\"first\":\"Chamuth\",\"last\":\"Chamandana\"}', 'paid', 1, 1, 1, 9, 9, NULL, '2020-04-01 06:13:17', '2020-04-01 06:13:17'),
+(5, '{\"add1\":\"Ratakoopiwatta\",\"add2\":\"Hiriwadunna\",\"city\":\"Kegalle\",\"zip\":\"71000\",\"phone\":\"0756281355\",\"email\":\"c.chamandana@gmail.com\",\"first\":\"Chamuth\",\"last\":\"Chamandana\"}', 'paid', 1, 1, 1, 10, 10, NULL, '2020-04-04 01:45:45', '2020-04-04 01:45:45');
 
 -- --------------------------------------------------------
 
@@ -877,7 +887,8 @@ CREATE TABLE `order_products` (
 INSERT INTO `order_products` (`id`, `product_id`, `order_id`, `qty`, `price`, `tax_amount`, `created_at`, `updated_at`) VALUES
 (1, 10, 3, '1.000000', '1500.000000', '0.000000', '2020-04-01 06:10:08', '2020-04-01 06:10:08'),
 (2, 11, 3, '1.000000', '1500.000000', '0.000000', '2020-04-01 06:10:08', '2020-04-01 06:10:08'),
-(3, 11, 4, '1.000000', '1500.000000', '0.000000', '2020-04-01 06:13:18', '2020-04-01 06:13:18');
+(3, 11, 4, '1.000000', '1500.000000', '0.000000', '2020-04-01 06:13:18', '2020-04-01 06:13:18'),
+(4, 10, 5, '1.000000', '1500.000000', '0.000000', '2020-04-04 01:45:45', '2020-04-04 01:45:45');
 
 -- --------------------------------------------------------
 
@@ -1274,6 +1285,27 @@ INSERT INTO `property_dropdown_options` (`id`, `property_id`, `display_text`, `c
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `quote_requests`
+--
+
+CREATE TABLE `quote_requests` (
+  `id` int(20) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `company` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `description` varchar(1000) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `quote_requests`
+--
+
+INSERT INTO `quote_requests` (`id`, `name`, `company`, `email`, `description`) VALUES
+(1, 'Chamuth Chamandana', '1996', 'c.chamandana@gmail.com', 'Example');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `roles`
 --
 
@@ -1323,11 +1355,22 @@ CREATE TABLE `stocks` (
 --
 
 INSERT INTO `stocks` (`id`, `remaining`) VALUES
-(10, 22),
+(10, 12),
 (11, 12),
 (12, 22),
 (13, 7),
 (14, 34);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `subscriptions`
+--
+
+CREATE TABLE `subscriptions` (
+  `id` int(20) NOT NULL,
+  `email` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -1360,6 +1403,28 @@ CREATE TABLE `tax_rates` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `testimonials`
+--
+
+CREATE TABLE `testimonials` (
+  `id` int(20) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `company` varchar(255) DEFAULT NULL,
+  `position` varchar(255) DEFAULT NULL,
+  `testimonial` varchar(1000) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `testimonials`
+--
+
+INSERT INTO `testimonials` (`id`, `name`, `email`, `company`, `position`, `testimonial`) VALUES
+(1, 'Chamuth Chamandana', 'c.chamandana@gmail.com', '1996', 'CEO', 'thank you kanye, very cool');
 
 -- --------------------------------------------------------
 
@@ -1763,6 +1828,12 @@ ALTER TABLE `property_dropdown_options`
   ADD KEY `property_dropdown_options_property_id_foreign` (`property_id`);
 
 --
+-- Indexes for table `quote_requests`
+--
+ALTER TABLE `quote_requests`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `roles`
 --
 ALTER TABLE `roles`
@@ -1782,6 +1853,12 @@ ALTER TABLE `stocks`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `subscriptions`
+--
+ALTER TABLE `subscriptions`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `tax_groups`
 --
 ALTER TABLE `tax_groups`
@@ -1791,6 +1868,12 @@ ALTER TABLE `tax_groups`
 -- Indexes for table `tax_rates`
 --
 ALTER TABLE `tax_rates`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `testimonials`
+--
+ALTER TABLE `testimonials`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1821,7 +1904,7 @@ ALTER TABLE `wishlists`
 -- AUTO_INCREMENT for table `addresses`
 --
 ALTER TABLE `addresses`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `admin_users`
@@ -1941,13 +2024,13 @@ ALTER TABLE `oauth_personal_access_clients`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `order_products`
 --
 ALTER TABLE `order_products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `order_product_attributes`
@@ -2064,6 +2147,12 @@ ALTER TABLE `property_dropdown_options`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
+-- AUTO_INCREMENT for table `quote_requests`
+--
+ALTER TABLE `quote_requests`
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
@@ -2076,6 +2165,12 @@ ALTER TABLE `states`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `subscriptions`
+--
+ALTER TABLE `subscriptions`
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `tax_groups`
 --
 ALTER TABLE `tax_groups`
@@ -2086,6 +2181,12 @@ ALTER TABLE `tax_groups`
 --
 ALTER TABLE `tax_rates`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `testimonials`
+--
+ALTER TABLE `testimonials`
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `users`

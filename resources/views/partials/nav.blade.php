@@ -18,9 +18,9 @@
                                     <nav>                                                
                                         <ul id="navigation">                                                                                                                                     
                                             <li><a href="/">Home</a></li>
-                                            <li><a href="#latest">Latest</a></li>
-                                            <li><a href="blog">Blog</a></li>
-                                            <li><a href="contact">Contact</a></li>
+                                            <li><a href="/#latest">Latest</a></li>
+                                            <li><a href="https://www.deskplant.lk/blog/?la_preset=blog-01https://www.deskplant.lk/blog/?la_preset=blog-01https://www.deskplant.lk/blog/?la_preset=blog-01https://www.deskplant.lk/blog/?la_preset=blog-01">Blog</a></li>
+                                            <li><a href="/contact">Contact</a></li>
                                         </ul>
                                     </nav>
                                 </div>

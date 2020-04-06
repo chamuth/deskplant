@@ -8,7 +8,6 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }} | Indoor Potted Plants Delivery in Sri Lanka</title>
-    <link rel="shortcut icon" href="/favicon.png">
     <!-- Scripts -->
     
 
@@ -30,6 +29,8 @@
     <link rel="stylesheet" href="/assets/css/slick.css">
     <link rel="stylesheet" href="/assets/css/nice-select.css">
     <link rel="stylesheet" href="/assets/css/style.css">
+
+    <link rel="icon" href="https://www.deskplant.lk/wp-content/uploads/2019/07/image-2-150x150.jpg" sizes="32x32">
 </head>
 <body>
 

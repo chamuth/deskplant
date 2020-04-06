@@ -60,4 +60,14 @@ class HomeController extends Controller
         return view('home')
             ->with(compact('products', 'page', 'wishlists'));
     }
+    
+    public function about()
+    {
+        return view("about");
+    }
+
+    public function contact()
+    {
+        return view("contact");
+    }
 }

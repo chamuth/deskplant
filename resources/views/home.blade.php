@@ -226,6 +226,7 @@
                     <div class="col-xl-5 col-lg-5 col-md-6 ">
                       <div class="latest-subscribe">
                           <form action="/subscribe" method="POST" enctype="multipart/form-data">
+                                <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />  
                               <input type="email" name="email" placeholder="Your email here">
                               <button>Subscribe</button>
                           </form>

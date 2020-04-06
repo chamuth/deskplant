@@ -18,7 +18,7 @@ class NewsletterSubscriptionController extends Controller
         ]);
 
         return redirect()
-            ->name("home");
+            ->route("home");
     }
 
 }

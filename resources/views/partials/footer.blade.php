@@ -9,7 +9,7 @@
                  <div class="single-footer-caption mb-30">
                       <!-- logo -->
                      <div class="footer-logo">
-                         <a href="index.html"><img style="height:50px" src="assets/img/logo/logo2_footer.png" alt=""></a>
+                         <a href="/"><img style="height:50px" src="assets/img/logo/logo2_footer.png" alt=""></a>
                      </div>
                      <div class="footer-tittle">
                          <div class="footer-pera">
@@ -74,10 +74,9 @@
              <div class="footer-copy-right f-right">
                  <!-- social -->
                  <div class="footer-social">
-                     <a href="#"><i class="fab fa-twitter"></i></a>
-                     <a href="#"><i class="fab fa-facebook-f"></i></a>
-                     <a href="#"><i class="fab fa-behance"></i></a>
-                     <a href="#"><i class="fas fa-globe"></i></a>
+                     <a href="https://www.facebook.com/deskplantlk/"><i class="fab fa-facebook-f"></i></a>
+                     <a href="https://www.instagram.com/deskplantlk/"><i class="fab fa-instagram"></i></a>
+                     <a href="https://www.pinterest.co.uk/deskplantlk/"><i class="fab fa-pinterest"></i></a>
                  </div>
              </div>
          </div>

@@ -69,16 +69,18 @@
             <span class="navbar-toggler-bar navbar-kebab"></span>
           </button>
           <div class="collapse navbar-collapse justify-content-end" id="navigation">
-            <form>
-              <div class="input-group no-border">
-                <input type="text" value="" class="form-control" placeholder="Search...">
-                <div class="input-group-append">
-                  <div class="input-group-text">
-                    <i class="nc-icon nc-zoom-split"></i>
-                  </div>
-                </div>
-              </div>
-            </form>
+          <div class="water-level">
+
+            <div class="vertical-progress">
+              <div class="progress-slide" id="verticalProgressbar"></div>
+            </div>
+
+            <div class="text-container">
+              <span class="title">Water Level</span>
+              <span class="value" id="progressText">0%</span>
+            </div>
+
+            </div>
             <ul class="navbar-nav">
               <li class="nav-item btn-rotate dropdown">
                 <a class="nav-link dropdown-toggle" href="/" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -270,6 +272,47 @@
   <script src="/assets/js/plugins/bootstrap-notify.js"></script>
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="/assets/js/paper-dashboard.min.js?v=2.0.1" type="text/javascript"></script>
+  
+  <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-analytics.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-firestore.js"></script>
+
+  <script>
+
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyAVxEKCXwLOXGaXJQrDOTGf8NebLjCx7ew",
+      authDomain: "deskplant-lk.firebaseapp.com",
+      databaseURL: "https://deskplant-lk.firebaseio.com",
+      projectId: "deskplant-lk",
+      storageBucket: "deskplant-lk.appspot.com",
+      messagingSenderId: "873169740349",
+      appId: "1:873169740349:web:ea2168da78052834e50054",
+      measurementId: "G-DDGE6CDF1R"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+
+    var $progressbar = $("#verticalProgressbar");
+    var $progressText = $("#progressText");
+
+    var database = firebase.firestore();
+
+
+    let doc = database.collection("values").doc("water");
+    
+    let observer = doc.onSnapshot(docSnapshot => {
+      var level = docSnapshot.data().level;
+      $progressText.html((level * 100).toString() + "%");
+      $progressbar.css("height", (level * 100).toString() + "%");
+      // ...
+    }, err => {
+      console.log(`Encountered error: ${err}`);
+    });
+
+  </script>
 
     <script type="text/javascript">
 

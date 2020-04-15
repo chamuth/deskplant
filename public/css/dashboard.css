@@ -288,3 +288,40 @@ p {
 {
     margin-right:10px;
 }
+
+.water-level
+{
+    display:flex;
+    flex-direction:row;
+    justify-items:center;
+    align-items:center;
+    margin-right:50px;
+}
+
+.water-level .vertical-progress
+{
+    width:30px;
+    height:35px;
+    background-color:grey;
+    margin-right:15px;
+    position:relative;
+    border-radius:5px;
+    overflow:hidden;
+}
+
+.water-level .progress-slide
+{
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+    height:0%;
+    background-color:lightskyblue;
+    transition:all 250ms;
+}
+
+.water-level .text-container
+{
+    display:flex;
+    flex-direction:column;
+}

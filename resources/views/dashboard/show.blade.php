@@ -26,7 +26,7 @@
   <div class="wrapper ">
     <div class="sidebar" data-color="white" data-active-color="danger">
       <div class="logo">
-        <a href="https://www.creative-tim.com" class="simple-text logo-normal">
+        <a href="/" class="simple-text logo-normal">
           <div class="logo-image-big" style="text-align:center">
             <img src="/assets/img/logo/logo.png" height="45">
           </div>
